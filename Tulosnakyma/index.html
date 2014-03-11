@@ -18,31 +18,10 @@
 		["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valioopisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
 
 	var tulos = tulokset["Runo Tunnissa"];
-	var counter = 2;
-	
-	console.log(tulos[0][1]);
 	
 	$(document).ready(function() {
 		alusta(); // Alustetaan "ohjelma".
-		
-		var ajastin = setInterval(function() {
-			if(counter >= 0) {
-			  switch(counter) {
-			    case 0:
-					naytaAnimaatio("#sija1");
-				  break;
-				case 1:
-					naytaAnimaatio("#sija2");
-				  break;
-				case 2:
-					naytaAnimaatio("#sija3");
-				  break;
-			  }
-			} else
-				clearInterval(ajastin);
-		    counter--;
-		}, 2500);
-		
+		animoiSijat();
 	});
 	
 	/**
@@ -50,15 +29,40 @@
 	 */
 	function alusta() {
 	  $('p').hide(); // Piilotetaan elementit.
-	  $("#progressbar").progressbar();
-	  $("#progressbar").width(250);
 	}
-	
+  
+	var counter = 2;
+  function animoiSijat() {
+  
+    var ajastin = setInterval(function() {
+      if(counter >= 0) {
+			  switch(counter) {
+			    case 0:
+            naytaAnimaatio("#sija1");
+            break;
+          case 1:
+            naytaAnimaatio("#sija2");
+            break;
+          case 2:
+              naytaAnimaatio("#sija3");
+            break;
+          }
+        } else
+          clearInterval(ajastin);
+        counter--;
+		}, 2500);
+  }
+  
+  function animoiKunniat() {
+  
+  }
+  
 	function naytaAnimaatio(sija) {
-	    console.log(sija[sija.length - 1]);
-		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen,
-		$(sija).hide();
+	  console.log(sija[sija.length - 1]);
+		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen.
+    $(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
 		$(sija).slideToggle(1000);
+    $(sija + "_oppi").slideToggle('slow');
 	}
 	
 	function paivitaEdistys(arvo) {
@@ -72,10 +76,15 @@
   <body>
   
 	<img src="saku.png" />
-	<div id="progressbar"></div>
-	<p id="sija1">1. Joel Anttila</p>
-	<p id="sija2">2. Kalle Nissinen</p>
-	<p id="sija3">3. Hannes Salo</p>
+	<!-- <div id="progressbar"></div> -->
+	<p id="sija1" class="sijat"></p>
+  <p id="sija1_oppi" class="oppilaitos"></p>
+  
+	<p id="sija2" class="sijat"></p>
+  <p id="sija2_oppi" class="oppilaitos"></p>
+  
+	<p id="sija3" class="sijat"></p>
+  <p id="sija3_oppi" class="oppilaitos"></p>
 	
   </body>
   

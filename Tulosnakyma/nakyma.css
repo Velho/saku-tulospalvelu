@@ -10,9 +10,10 @@
  */
 
 body {
-	margin: 0 auto;
+	margin: auto;
 	width: 300px;
 }
+
 /**
  *
  */
@@ -34,9 +35,24 @@ body {
   font-size: 30px;
 }
 
+.sijat {
+  height: 30px;
+}
+
 /**
  * class=kunnia
  */
 .kunnia {
   font-size: 30px;
+}
+
+.oppilaitos {
+  width: 300px;
+  height: 20px;
+  font-size: 30px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+  /*
+  list-style: disc outside none;
+  display: list-item; */
 }
