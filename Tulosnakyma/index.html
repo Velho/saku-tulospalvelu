@@ -1,21 +1,82 @@
 <!doctype html>
 <html>
   <head>
-  <? /* Otsikon voisi luoda dynaamisesti esim. mahdollisista lajeista, tms. */ ?>
   <title>SakuStars Tulokset</title>
   <link rel="stylesheet" href="js/jquery-ui-1.10.4/themes/base/jquery.ui.all.css">
+  <link rel="stylesheet" href="nakyma.css">
   <script src="js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
   <script src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
   
   <script>
-    $(function() {
-      $("#progressbar").progressbar({value: 50});
-    });
+	/**
+	 * TODO
+	 * 	- Tulosta Oppilaitos myös sijoitukseen.
+	 *
+	 */
+	 
+	var tulokset = {"Runo Tunnissa":[
+		["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valioopisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
+
+	var tulos = tulokset["Runo Tunnissa"];
+	var counter = 2;
+	
+	console.log(tulos[0][1]);
+	
+	$(document).ready(function() {
+		alusta(); // Alustetaan "ohjelma".
+		
+		var ajastin = setInterval(function() {
+			if(counter >= 0) {
+			  switch(counter) {
+			    case 0:
+					naytaAnimaatio("#sija1");
+				  break;
+				case 1:
+					naytaAnimaatio("#sija2");
+				  break;
+				case 2:
+					naytaAnimaatio("#sija3");
+				  break;
+			  }
+			} else
+				clearInterval(ajastin);
+		    counter--;
+		}, 2500);
+		
+	});
+	
+	/**
+	 * Alustaa koko verkkosovelman elementit.
+	 */
+	function alusta() {
+	  $('p').hide(); // Piilotetaan elementit.
+	  $("#progressbar").progressbar();
+	  $("#progressbar").width(250);
+	}
+	
+	function naytaAnimaatio(sija) {
+	    console.log(sija[sija.length - 1]);
+		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen,
+		$(sija).hide();
+		$(sija).slideToggle(1000);
+	}
+	
+	function paivitaEdistys(arvo) {
+	  
+	}
+	
   </script>
+  
   </head>
   
   <body>
-    <div id="progressbar"></div>
+  
+	<img src="saku.png" />
+	<div id="progressbar"></div>
+	<p id="sija1">1. Joel Anttila</p>
+	<p id="sija2">2. Kalle Nissinen</p>
+	<p id="sija3">3. Hannes Salo</p>
+	
   </body>
   
 </html>

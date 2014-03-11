@@ -1,0 +1,42 @@
+/**
+* Toteuttaa jotain köykäsiä teemotuksia Tulosnäkymälle. Odotellen muita ryhmäläisiä.
+ * Joel Anttila 2014
+ */
+
+/*
+ * TODO
+ * Explorer ei tue @media => css3 -ominaisuus. Luo vaihtoehdollinen metodi. 
+ * Info näytössä täytyy teemoitukset näkyä oikein. Pieni fontti on pieni fontti.
+ */
+
+body {
+	margin: 0 auto;
+	width: 300px;
+}
+/**
+ *
+ */
+#sija1 {
+  font-size: 40px;
+}
+
+/**
+ *
+ */
+#sija2 {
+  font-size: 35px;
+}  
+
+/**
+ *
+ */
+#sija3 {
+  font-size: 30px;
+}
+
+/**
+ * class=kunnia
+ */
+.kunnia {
+  font-size: 30px;
+}
