@@ -2,27 +2,42 @@
 <html>
   <head>
   <title>SakuStars Tulokset</title>
-  <link rel="stylesheet" href="js/jquery-ui-1.10.4/themes/base/jquery.ui.all.css">
   <link rel="stylesheet" href="nakyma.css">
-  <script src="js/jquery-ui-1.10.4/jquery-1.10.2.js"></script>
-  <script src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+  
+  <script src="js/jquery-1.11.0.js"></script>
   
   <script>
 	/**
 	 * TODO
-	 * 	- Tulosta Oppilaitos myös sijoitukseen.
+	 * 	- Tulosta Oppilaitos myös sijoitukseen. <= VALMIS
 	 *
 	 */
-	 
-	var tulokset = {"Runo Tunnissa":[
-		["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valioopisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
+   
+	var tulokset = {"Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valioopisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
 
 	var tulos = tulokset["Runo Tunnissa"];
 	
 	$(document).ready(function() {
-		alusta(); // Alustetaan "ohjelma".
-		animoiSijat();
-	});
+		//alusta(); // Alustetaan "ohjelma".
+    $('p').hide();
+		var ajastin = setInterval(function() {
+			if(counter >= 0) {
+        switch(counter) {
+          case 0:
+            naytaAnimaatio("#sija1");
+            break;
+          case 1:
+            naytaAnimaatio("#sija2");
+            break;
+          case 2:
+            naytaAnimaatio("#sija3");
+            break;
+          }
+        } else
+          clearInterval(ajastin);
+        counter--;
+    }, 2500);
+  });
 	
 	/**
 	 * Alustaa koko verkkosovelman elementit.
@@ -36,34 +51,36 @@
   
     var ajastin = setInterval(function() {
       if(counter >= 0) {
-			  switch(counter) {
-			    case 0:
+        switch(counter) {
+          case 0:
             naytaAnimaatio("#sija1");
             break;
           case 1:
             naytaAnimaatio("#sija2");
-            break;
+          break;
           case 2:
-              naytaAnimaatio("#sija3");
-            break;
+            naytaAnimaatio("#sija3");
+          break;
           }
         } else
-          clearInterval(ajastin);
+            clearInterval(ajastin);
         counter--;
 		}, 2500);
   }
   
-  function animoiKunniat() {
   
-  }
   
 	function naytaAnimaatio(sija) {
 	  console.log(sija[sija.length - 1]);
 		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen.
-    $(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
+		$(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
 		$(sija).slideToggle(1000);
-    $(sija + "_oppi").slideToggle('slow');
+		$(sija + "_oppi").slideToggle('slow');
 	}
+  
+  function animoiKunniat() {
+  
+  }
 	
 	function paivitaEdistys(arvo) {
 	  
@@ -77,13 +94,13 @@
   
 	<img src="saku.png" />
 	<!-- <div id="progressbar"></div> -->
-	<p id="sija1" class="sijat"></p>
+	<p id="sija1" class="sijat">T</p>
   <p id="sija1_oppi" class="oppilaitos"></p>
   
-	<p id="sija2" class="sijat"></p>
+	<p id="sija2" class="sijat">A</p>
   <p id="sija2_oppi" class="oppilaitos"></p>
   
-	<p id="sija3" class="sijat"></p>
+	<p id="sija3" class="sijat">B</p>
   <p id="sija3_oppi" class="oppilaitos"></p>
 	
   </body>
