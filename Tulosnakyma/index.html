@@ -10,6 +10,8 @@
 	/**
 	 * TODO
 	 * 	- Tulosta Oppilaitos myös sijoitukseen. <= VALMIS
+   *  - Näytä lajit listassa vasemmalla.
+   *  - Näytä kunniat listassa oikealla.
 	 *
 	 */
    
@@ -18,25 +20,8 @@
 	var tulos = tulokset["Runo Tunnissa"];
 	
 	$(document).ready(function() {
-		//alusta(); // Alustetaan "ohjelma".
-    $('p').hide();
-		var ajastin = setInterval(function() {
-			if(counter >= 0) {
-        switch(counter) {
-          case 0:
-            naytaAnimaatio("#sija1");
-            break;
-          case 1:
-            naytaAnimaatio("#sija2");
-            break;
-          case 2:
-            naytaAnimaatio("#sija3");
-            break;
-          }
-        } else
-          clearInterval(ajastin);
-        counter--;
-    }, 2500);
+		alusta(); // Alustetaan "ohjelma".
+    animoiSijat();
   });
 	
 	/**
