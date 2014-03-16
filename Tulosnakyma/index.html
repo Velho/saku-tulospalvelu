@@ -13,22 +13,41 @@
    *  - Näytä lajit listassa vasemmalla.
    *  - Näytä kunniat listassa oikealla.
 	 *
+   * Lajit otsikko:
+   * Vaihtehtoina on joko ajaa lajit omaan tauluun, jolloin lajit[0] == tulokset[0]. 
+   * Tai vaihtoehtoisesti repiä avain jollakin tyyliin tämän hetkisestä ratkaisusta.
+   * Tämän hetkinen: {"Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
 	 */
-   
-	var tulokset = {"Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valioopisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
-
+  
+  
+	var tulokset = {
+    "Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]],
+    "Yksin laulua":[["Hannes Salo", "VAO"], ["Tero Ulvinen", "Hervannan Tuliopisto"], ["Kalle Nissinen", "Kristillinen Penaalikoulu"]]
+  };
+  var lajit = new Array();
+  
+  var index = 0;
 	var tulos = tulokset["Runo Tunnissa"];
-	
+  
 	$(document).ready(function() {
 		alusta(); // Alustetaan "ohjelma".
     animoiSijat();
+    animoiKunniat();
   });
 	
 	/**
 	 * Alustaa koko verkkosovelman elementit.
 	 */
 	function alusta() {
-	  $('p').hide(); // Piilotetaan elementit.
+	  $(".sijat").hide(); 
+    $('.oppilaitos').hide();
+    $('.kunnia').hide();
+    //$("#laji").text(
+    
+    // Viittaa lajiin => tulokset[lajit[index]][0][0]
+    for(key in tulokset) {
+      lajit.push(key);
+    }
 	}
   
 	var counter = 2;
@@ -53,7 +72,11 @@
 		}, 2500);
   }
   
-  
+  function animoiKunniat() {
+    $('.kunnia').each(function() {
+      $(this).fadeIn(2000);
+    });
+  }
   
 	function naytaAnimaatio(sija) {
 	  console.log(sija[sija.length - 1]);
@@ -62,14 +85,6 @@
 		$(sija).slideToggle(1000);
 		$(sija + "_oppi").slideToggle('slow');
 	}
-  
-  function animoiKunniat() {
-  
-  }
-	
-	function paivitaEdistys(arvo) {
-	  
-	}
 	
   </script>
   
@@ -77,17 +92,31 @@
   
   <body>
   
-	<img src="saku.png" />
-	<!-- <div id="progressbar"></div> -->
-	<p id="sija1" class="sijat">T</p>
-  <p id="sija1_oppi" class="oppilaitos"></p>
+    <div id="kunnia">
+      <p class="kunnia">Erkki</p>
+      <p class="kunnia">Erkki</p>
+      <p class="kunnia">Erkki</p>
+      <p class="kunnia">Erkki</p>
+    </div>
+    
+    <div id="sisalto">
+      <div id="tulos">
+    
+        <h2 id="laji"></h2>
+        <p id="sija1" class="sijat"></p>
+        <p id="sija1_oppi" class="oppilaitos"></p>
   
-	<p id="sija2" class="sijat">A</p>
-  <p id="sija2_oppi" class="oppilaitos"></p>
-  
-	<p id="sija3" class="sijat">B</p>
-  <p id="sija3_oppi" class="oppilaitos"></p>
-	
+        <p id="sija2" class="sijat"></p>
+        <p id="sija2_oppi" class="oppilaitos"></p>
+    
+        <p id="sija3" class="sijat"></p>
+        <p id="sija3_oppi" class="oppilaitos"></p>
+      </div>
+    
+      <div id="lajit">
+        <img src="saku.png" />
+      </div>
+    </div>
   </body>
   
 </html>

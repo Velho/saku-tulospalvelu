@@ -9,9 +9,34 @@
  * Info näytössä täytyy teemoitukset näkyä oikein. Pieni fontti on pieni fontti.
  */
 
+ /*
 body {
 	margin: auto;
 	width: 300px;
+} */
+
+/*
+div#sisalto {
+  //margin: 0px auto;
+  width: 600px;
+  padding: 0px;
+} */
+
+div#kunnia {
+  float: right;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+div#tulos {
+  float: right;
+  width: 300px;
+  padding-right: 100px;
+}
+
+div#lajit {
+  float: left;
+  width: 260px;
 }
 
 /**
