@@ -1,12 +1,21 @@
+
 /**
-* Toteuttaa jotain köykäsiä teemotuksia Tulosnäkymälle. Odotellen muita ryhmäläisiä.
- * Joel Anttila 2014
+ * Lopputyö
+ * 
+ * SAKUSTARS Tulospalvelu
+ * Projekti Tulosnäkymä
+ * 
+ * Ohjelmoija: Joel Anttila 2014
+ * nakyma.css
  */
 
-/*
+/**
+ * Toteuttaa yksinkertaisia CSS tyylittelyjä kuten
+ * fontit, padding, reunat, yms sijoitteluun liittyviä
+ * tyylittelyjä.
+ *
  * TODO
- * Explorer ei tue @media => css3 -ominaisuus. Luo vaihtoehdollinen metodi. 
- * Info näytössä täytyy teemoitukset näkyä oikein. Pieni fontti on pieni fontti.
+ *  - <li> -elementistä listaus bulletti pois.
  */
 
  /*
@@ -21,6 +30,10 @@ div#sisalto {
   width: 600px;
   padding: 0px;
 } */
+
+h2 {
+  font-size: 35px;
+}
 
 div#kunnia {
   float: right;
@@ -66,6 +79,7 @@ div#lajit {
 
 /**
  * class=kunnia
+ * 30px vakio
  */
 .kunnia {
   font-size: 30px;

@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>SakuStars Tulokset</title>
   <link rel="stylesheet" href="nakyma.css">
   
@@ -8,15 +9,13 @@
   
   <script>
 	/**
-	 * TODO
-	 * 	- Tulosta Oppilaitos myös sijoitukseen. <= VALMIS
-   *  - Näytä lajit listassa vasemmalla.
-   *  - Näytä kunniat listassa oikealla. <= VALMIS
-	 *
-   * Lajit otsikko:
-   * Vaihtehtoina on joko ajaa lajit omaan tauluun, jolloin lajit[0] == tulokset[0]. 
-   * Tai vaihtoehtoisesti repiä avain jollakin tyyliin tämän hetkisestä ratkaisusta.
-   * Tämän hetkinen: {"Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]};
+   * Lopputyö
+   * 
+	 * SAKUSTARS Tulospalvelu
+   * Projekti Tulosnäkymä
+   * 
+   * Ohjelmoija: Joel Anttila 2014
+   * index.html
 	 */
   
   
@@ -25,20 +24,31 @@
     "Yksin laulua":[["Hannes Salo", "VAO"], ["Tero Ulvinen", "Hervannan Tuliopisto"], ["Kalle Nissinen", "Kristillinen Penaalikoulu"]]
   };
   
-  var kunniat = {"Runo Tunnissa":[["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kahvi Kupillinen", "Pannullisen Ammattikoulu"]],
-    "Yksin Laulua":[["Hermanni Voikukka", "Tuubin Opisto"], ["LP Miljönääri", "RAO"]]};
+  var kunniat = {
+    "Runo Tunnissa":[["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kahvi Kupillinen", "Pannullisen Ammattikoulu"]],
+    "Yksin laulua":[["Hermanni Voikukka", "Tuubin Opisto"], ["LP Miljönääri", "RAO"]]};
     
   var lajit = new Array();
   
   var laji;
-	var tulos;
+	var tulos; 
+  var index = 0; // Pitää kirjaa missä lajissa mennään.
   
 	$(document).ready(function() {
-		alusta(); // Alustetaan "ohjelma".
-    animoiSijat();
-    animoiKunniat();
+    juokse();
+    var tulosesitys = setInterval(function() {
+      juokse();
+    }, 20000); // 15000ms = 15sec
   });
 	
+  function juokse() {
+    alusta();
+    animoiSijat();
+    animoiKunniat();
+    
+    paivitaLajiIdx();
+  }
+  
 	/**
 	 * Alustaa koko verkkosovelman elementit.
 	 */
@@ -46,21 +56,20 @@
 	  $(".sijat").hide(); 
     $('.oppilaitos').hide();
     $('.kunnia').hide();
-    //$("#laji").text(
     
     // Viittaa lajiin => tulokset[lajit[index]][0][0]
     for(key in tulokset) {
       lajit.push(key);
     }
     
-    laji = lajit[0];
+    laji = lajit[index];
     tulos = tulokset[laji];
     $("#laji").text(laji);
 	}
   
 	var counter = 2;
   function animoiSijat() {
-  
+    counter = 2;
     var ajastin = setInterval(function() {
       if(counter >= 0) {
         switch(counter) {
@@ -85,16 +94,11 @@
     var knn = kunniat[laji];
     
     for(var i = 0; i < knn.length; i++) {
-      k_p.eq(i).text(knn[i][0]);
+      k_p.eq(i).html(knn[i][0] + "<br/>" + knn[i][1]);
       k_p.eq(i).fadeIn(2000);
       
       console.log(kunniat[laji][i][0]);
     }
-  
-  
-   /* $('.kunnia').each(function() {
-      $(this).slideUp(600).fadeIn(2000);
-    }); */
   }
   
 	function naytaAnimaatio(sija) {
@@ -104,6 +108,13 @@
 		$(sija).slideToggle(1000);
 		$(sija + "_oppi").slideToggle('slow');
 	}
+  
+  function paivitaLajiIdx() {
+    if(index < lajit.length)
+        index++;
+      else 
+        index = 0;
+  }
 	
   </script>
   
