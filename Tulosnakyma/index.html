@@ -11,7 +11,7 @@
 	 * TODO
 	 * 	- Tulosta Oppilaitos myös sijoitukseen. <= VALMIS
    *  - Näytä lajit listassa vasemmalla.
-   *  - Näytä kunniat listassa oikealla.
+   *  - Näytä kunniat listassa oikealla. <= VALMIS
 	 *
    * Lajit otsikko:
    * Vaihtehtoina on joko ajaa lajit omaan tauluun, jolloin lajit[0] == tulokset[0]. 
@@ -24,10 +24,14 @@
     "Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]],
     "Yksin laulua":[["Hannes Salo", "VAO"], ["Tero Ulvinen", "Hervannan Tuliopisto"], ["Kalle Nissinen", "Kristillinen Penaalikoulu"]]
   };
+  
+  var kunniat = {"Runo Tunnissa":[["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kahvi Kupillinen", "Pannullisen Ammattikoulu"]],
+    "Yksin Laulua":[["Hermanni Voikukka", "Tuubin Opisto"], ["LP Miljönääri", "RAO"]]};
+    
   var lajit = new Array();
   
-  var index = 0;
-	var tulos = tulokset["Runo Tunnissa"];
+  var laji;
+	var tulos;
   
 	$(document).ready(function() {
 		alusta(); // Alustetaan "ohjelma".
@@ -48,6 +52,10 @@
     for(key in tulokset) {
       lajit.push(key);
     }
+    
+    laji = lajit[0];
+    tulos = tulokset[laji];
+    $("#laji").text(laji);
 	}
   
 	var counter = 2;
@@ -73,9 +81,20 @@
   }
   
   function animoiKunniat() {
-    $('.kunnia').each(function() {
-      $(this).fadeIn(2000);
-    });
+    var k_p = $(".kunnia");
+    var knn = kunniat[laji];
+    
+    for(var i = 0; i < knn.length; i++) {
+      k_p.eq(i).text(knn[i][0]);
+      k_p.eq(i).fadeIn(2000);
+      
+      console.log(kunniat[laji][i][0]);
+    }
+  
+  
+   /* $('.kunnia').each(function() {
+      $(this).slideUp(600).fadeIn(2000);
+    }); */
   }
   
 	function naytaAnimaatio(sija) {
@@ -93,16 +112,22 @@
   <body>
   
     <div id="kunnia">
-      <p class="kunnia">Erkki</p>
-      <p class="kunnia">Erkki</p>
-      <p class="kunnia">Erkki</p>
-      <p class="kunnia">Erkki</p>
+      <p class="kunnia"></p> <!-- 1 -->
+      <p class="kunnia"></p> <!-- 2 -->
+      <p class="kunnia"></p> <!-- 3 -->
+      <p class="kunnia"></p> <!-- 4 -->
+      <p class="kunnia"></p> <!-- 5 -->
+      <p class="kunnia"></p> <!-- 6 -->
+      <p class="kunnia"></p> <!-- 7 -->
+      <p class="kunnia"></p> <!-- 8 -->
+      <p class="kunnia"></p> <!-- 9 -->
+      <p class="kunnia"></p> <!-- 10 -->
     </div>
     
     <div id="sisalto">
       <div id="tulos">
     
-        <h2 id="laji"></h2>
+        <h1 id="laji"></h1>
         <p id="sija1" class="sijat"></p>
         <p id="sija1_oppi" class="oppilaitos"></p>
   
