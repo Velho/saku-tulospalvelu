@@ -46,6 +46,15 @@
     animoiSijat();
     animoiKunniat();
     
+    /*
+    $("#sija1").text("1. " + tulos[0][0]);
+    $("#sija1_oppi").text(tulos[0][1]);    
+    $("#sija2").text("1. " + tulos[0][0]);
+    $("#sija2_oppi").text(tulos[0][1])
+    $("#sija3").text("1. " + tulos[0][0]);
+    $("#sija3_oppi").text(tulos[0][1]);
+    */
+
     paivitaLajiIdx();
   }
   
@@ -96,13 +105,14 @@
     for(var i = 0; i < knn.length; i++) {
       k_p.eq(i).html(knn[i][0] + "<br/>" + knn[i][1]);
       k_p.eq(i).fadeIn(2000);
-      
-      console.log(kunniat[laji][i][0]);
+      //k_p.eq(i).show();
+
+      //console.log(kunniat[laji][i][0]);
     }
   }
   
 	function naytaAnimaatio(sija) {
-	  console.log(sija[sija.length - 1]);
+	  //console.log(sija[sija.length - 1]);
 		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen.
 		$(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
 		$(sija).slideToggle(1000);
