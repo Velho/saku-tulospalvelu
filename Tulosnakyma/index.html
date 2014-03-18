@@ -83,13 +83,13 @@
       if(counter >= 0) {
         switch(counter) {
           case 0:
-            naytaAnimaatio("#sija1");
+            naytaAnimaatio("#sija1", 1);
             break;
           case 1:
-            naytaAnimaatio("#sija2");
+            naytaAnimaatio("#sija2", 2);
           break;
           case 2:
-            naytaAnimaatio("#sija3");
+            naytaAnimaatio("#sija3", 3);
           break;
           }
         } else
@@ -111,9 +111,9 @@
     }
   }
   
-	function naytaAnimaatio(sija) {
+	function naytaAnimaatio(sija, arvo) {
 	  //console.log(sija[sija.length - 1]);
-		$(sija).text(sija[sija.length - 1] + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen.
+		$(sija).text(arvo + ". " + tulos[counter][0]);// [0] => Viittaa Nimeen.
 		$(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
 		$(sija).slideToggle(1000);
 		$(sija + "_oppi").slideToggle('slow');
