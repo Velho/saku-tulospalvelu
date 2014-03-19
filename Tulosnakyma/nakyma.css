@@ -1,4 +1,3 @@
-
 /**
  * Lopputyö
  * 
@@ -22,7 +21,11 @@
 body {
 	margin: auto;
 	width: 300px;
-} */
+   } */
+
+body {
+font-family: 'Denk One', sans-serif;
+}
 
 /*
 div#sisalto {
