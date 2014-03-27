@@ -24,7 +24,11 @@ body {
    } */
 
 body {
+<<<<<<< HEAD
+
+=======
 font-family: 'Cedarville Cursive', cursive;
+>>>>>>> ff9dab8c6d5f7ee92170474209188e2a01175379
 }
 
 /*
@@ -38,16 +42,21 @@ h2 {
   font-size: 35px;
 }
 
+h3 {
+  font-size: 25px;
+}
+
 div#kunnia {
   float: right;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-top: 70px;
+  padding-left: 30px;
+  padding-right: 150px;
 }
 
 div#tulos {
   float: right;
   width: 300px;
-  padding-right: 100px;
+  padding-right: 150px;
 }
 
 div#lajit {
@@ -55,18 +64,27 @@ div#lajit {
   width: 260px;
 }
 
+#kunnia_srk1 {
+  float: left;
+  padding-right: 25px;
+}
+
+#kunnia_srk2 {
+  float: right;
+}
+
 /**
  *
  */
 #sija1 {
-  font-size: 40px;
+  font-size: 35px;
 }
 
 /**
  *
  */
 #sija2 {
-  font-size: 35px;
+  font-size: 30px;
 }  
 
 /**
@@ -77,7 +95,11 @@ div#lajit {
 }
 
 .sijat {
-  height: 30px;
+  height: 25px;
+}
+
+.jaettu {
+  font-size:30px;
 }
 
 /**
@@ -85,7 +107,7 @@ div#lajit {
  * 30px vakio
  */
 .kunnia {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .oppilaitos {

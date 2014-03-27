@@ -22,17 +22,31 @@
   
 	var tulokset = {
     "Runo Tunnissa":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]],
-    "Yksin laulua":[["Hannes Salo", "VAO"], ["Tero Ulvinen", "Hervannan Tuliopisto"], ["Kalle Nissinen", "Kristillinen Penaalikoulu"]]
+    "Yksin laulua":[["Hannes Salo", "VAO"], ["Tero Ulvinen", "Hervannan Tuliopisto"], ["Kalle Nissinen", "Kristillinen Penaalikoulu"]],
+    "Akustiset soittimet":[["Joel Anttila", "VAO"], ["Kalle Nissinen", "Tampereen Valio-opisto"], ["Hannes Salo", "Kaukalan Malliopisto"]]
   };
   
   var kunniat = {
-    "Runo Tunnissa":[["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kahvi Kupillinen", "Pannullisen Ammattikoulu"]],
-    "Yksin laulua":[["Hermanni Voikukka", "Tuubin Opisto"], ["LP Miljönääri", "RAO"]]};
-    
+    "Runo Tunnissa":[["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kahvi Kupillinen", "Pannullisen Ammattikoulu"], 
+                    ["Rami Leuka", "Näppäimistön ammattikoulu"], ["Teemu Näyttö", "Näytön Ammattikoulu"], ["Hannes Puhelin", "Puhelimen Ammattikoulu"], ["Kai Hanzein", "School of R0ck"], ["Marko Hietala", "Hietalan Ammattikoulu"], ["Tuomas Holopoinen", "HAO"]],
+    "Yksin laulua":[["Hermanni Voikukka", "Tuubin Opisto"], ["LP Miljönääri", "RAO"], ["ANTEEEKSI", "VAO"], ["Pulla Bolger", "TAO"], ["Hirven Vasa", "Ullakko"], ["Kai Hanzein", "School of R0ck"]],
+    "Akustiset soittimet":[]
+    };
+  
+  // Jaetut tulokset. 
+  var j_tulokset = {
+    "Runo Tunnissa":[["Tero Ulvinen", "VAO"]],
+    "Yksin laulua":[],
+    "Akustiset soittimet":[["Tero Ulvinen", "VAO"]]
+  };
+  
   var lajit = new Array();
   
   var laji;
-	var tulos; 
+
+  var tulos; 
+  var jaettu;
+
   var index = 0; // Pitää kirjaa missä lajissa mennään.
   
 	$(document).ready(function() {
@@ -45,6 +59,8 @@
   function juokse() {
     alusta();
     animoiSijat();
+<<<<<<< HEAD
+=======
     animoiKunniat();
     
     /*
@@ -55,6 +71,7 @@
     $("#sija3").text("1. " + tulos[0][0]);
     $("#sija3_oppi").text(tulos[0][1]);
     */
+>>>>>>> ff9dab8c6d5f7ee92170474209188e2a01175379
 
     paivitaLajiIdx();
   }
@@ -62,26 +79,32 @@
 	/**
 	 * Alustaa koko verkkosovelman elementit.
 	 */
-	function alusta() {
+  function alusta() {
 	  $(".sijat").hide(); 
     $('.oppilaitos').hide();
     $('.kunnia').hide();
+    $("h3").hide();
     
     // Viittaa lajiin => tulokset[lajit[index]][0][0]
     for(key in tulokset) {
       lajit.push(key);
     }
     
+    //alustaLajiLista();
+    
     laji = lajit[index];
     tulos = tulokset[laji];
+    jaettu = j_tulokset[laji];
+      
     $("#laji").text(laji);
 	}
   
-	var counter = 2;
+	var counter = 0;
   function animoiSijat() {
-    counter = 2;
+    counter = 0;
     var ajastin = setInterval(function() {
-      if(counter >= 0) {
+      console.log("Counter: " + counter);
+      if(counter < 3) {
         switch(counter) {
           case 0:
             naytaAnimaatio("#sija1", "1");
@@ -93,15 +116,20 @@
             naytaAnimaatio("#sija3", "3");
           break;
           }
-        } else
+        } else if(counter == 3)
+            animoiKunniat();
+          else
             clearInterval(ajastin);
-        counter--;
+        counter++;
 		}, 2500);
   }
   
   function animoiKunniat() {
     var k_p = $(".kunnia");
     var knn = kunniat[laji];
+    
+    if(knn.length > 0)
+      $("h3").show();
     
     for(var i = 0; i < knn.length; i++) {
       k_p.eq(i).html(knn[i][0] + "<br/>" + knn[i][1]);
@@ -118,7 +146,30 @@
 		$(sija + "_oppi").text(tulos[counter][1]); // [1] => Viittaa oppilaitokseen.
 		$(sija).slideToggle(1000);
 		$(sija + "_oppi").slideToggle('slow');
+    
+    if(jaettu.length != 0 && typeof jaettu[counter] !== 'undefined') {
+      // Show jaetut.
+      $(sija + "_jaettu").text(arvo + ". " + jaettu[counter][0]);
+      $(sija + "_jaettu").slideToggle(1000);
+      
+      $(sija + "_oppi_jaettu").text(jaettu[counter][1]);
+      $(sija + "_oppi_jaettu").slideToggle('slow');
+    }
+    
 	}
+  
+  /*
+  function alustaLajiLista() {
+    console.log("alustaLajiLista() => alku");
+    for(l in lajit) {
+      if(l == index)
+        $("<li class=\"lajiluokka\"><b>" + lajit[l] + "</b></li>").appendTo("ul#lajit_lista");
+      else
+        $("<li class=\"lajiluokka\">" + lajit[l] + "</li>").appendTo("ul#lajit_lista");
+    }
+    console.log("alustaLajiLista() => loppu");
+    $("ul#lajit_lista").show();
+  } */
   
   function paivitaLajiIdx() {
     if(index < lajit.length)
@@ -134,16 +185,21 @@
   <body>
   
     <div id="kunnia">
-      <p class="kunnia"></p> <!-- 1 -->
-      <p class="kunnia"></p> <!-- 2 -->
-      <p class="kunnia"></p> <!-- 3 -->
-      <p class="kunnia"></p> <!-- 4 -->
-      <p class="kunnia"></p> <!-- 5 -->
-      <p class="kunnia"></p> <!-- 6 -->
-      <p class="kunnia"></p> <!-- 7 -->
-      <p class="kunnia"></p> <!-- 8 -->
-      <p class="kunnia"></p> <!-- 9 -->
-      <p class="kunnia"></p> <!-- 10 -->
+      <h3>Kunniamaininnat</h3>
+      <div id="kunnia_srk1">
+        <p class="kunnia"></p> <!-- 1 -->
+        <p class="kunnia"></p> <!-- 2 -->
+        <p class="kunnia"></p> <!-- 3 -->
+        <p class="kunnia"></p> <!-- 4 -->
+        <p class="kunnia"></p> <!-- 5 -->
+      </div>
+      <div id="kunnia_srk2">
+        <p class="kunnia"></p> <!-- 6 -->
+        <p class="kunnia"></p> <!-- 7 -->
+        <p class="kunnia"></p> <!-- 8 -->
+        <p class="kunnia"></p> <!-- 9 -->
+        <p class="kunnia"></p> <!-- 10 -->
+      </div>
     </div>
     
     <div id="sisalto">
@@ -152,12 +208,19 @@
         <h1 id="laji"></h1>
         <p id="sija1" class="sijat"></p>
         <p id="sija1_oppi" class="oppilaitos"></p>
-  
+        <p id="sija1_jaettu" class="sijat jaettu">1. Testi</p>
+        <p id="sija1_oppi_jaettu" class="oppilaitos jaettu">TAO</p>
+       
+        
         <p id="sija2" class="sijat"></p>
         <p id="sija2_oppi" class="oppilaitos"></p>
-    
+        <p id="sija2_jaettu" class="sijat"></p>
+        <p id="sija2_oppi_jaettu" class="oppilaitos"></p>
+        
         <p id="sija3" class="sijat"></p>
         <p id="sija3_oppi" class="oppilaitos"></p>
+        <p id="sija3_jaettu" class="sijat"></p>
+        <p id="sija3_oppi_jaettu" class="oppilaitos"></p>
       </div>
     
       <div id="lajit">
