@@ -120,23 +120,18 @@ class TulosHallinta {
   public function __construct(Tietokanta $kanta, $nakyma) {
     $this->mKanta = $kanta;
     
-    // Käytetäänkö tätä luokkaa Lomakkeesta vai Näkymästä.
-    /*
-    if(!$nakyma) {
-        $this->kunniaTulos();
-        $this->sijoitusTulos();
-    } */
+    // Jätetään alustamatta jos ei ole kyseessä Näkymä.
+    if($nakyma)
+      $this->mOppilaitokset = new OppilaitosHallinta($kanta);
   }
   
   public function setOppilaitokset($op) { $this->mOppilaitokset = $op; }
   
   /**
-   * private $mSijoitus;
-   * private $mNimi;
-   * private $mPisteet;
-   * private $mLaji;
-   * private $mOppilaitos;
-   * private $mJaettu;
+   * [0] => Sija 1
+   * [1] => Sija 2
+   * [2] => Sija 3
+   * [3] => Kunnia
    */
     public function getTulokset(Laji $laji) {
         $rslt = array();
@@ -152,6 +147,20 @@ class TulosHallinta {
             }
         }
         return $rslt;
+    }
+    
+    /**
+     * Palauttaa taulukon lajeista, joiden tulokset ovat syötetty.
+     */
+    public function availableTulokset() {
+      $kysely = $this->mKanta->Kysely("SELECT laji_ID FROM tulokset;");
+      $tulokset = array();
+      
+      while($rivi = $kysely->fetch_assoc()) {
+        array_push($tulokset, $rivi);
+      }
+      
+      return $tulokset;
     }
     
     /**
@@ -199,7 +208,7 @@ class TulosHallinta {
           array_push($pronssia, $sarake_pronssi . "jaettu_" . $ominaisuudet[$i]);
 
         // Määritetään kunniamaininnan sarakkeet.
-        for($i = 0; $i <= 10; $i++)
+        for($i = 1; $i <= 10; $i++)
             for($j = 0; $j < 3; $j++)
                 array_push($kunnia, "kunniamaininta" . $i . "_" . $ominaisuudet[$j]);
         /*        
@@ -218,6 +227,8 @@ class TulosHallinta {
   /**
    * Revi lomakkeelta kunniamaininnat.
    * Funktio olettaa, että Oppilaitokset muuttuja on asetettu(!!!!!!!!!).
+   * 
+   * TODO Varmista ettei $this->getSarakkeet()[3]; ole syntaksi virhe.
    */
   private function kunniaTulos() {
     $sarakkeet = $this->getSarakkeet()[3];

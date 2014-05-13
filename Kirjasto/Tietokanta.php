@@ -17,4 +17,6 @@ class Tietokanta {
 	}
 }
 
+//$kanta_yhteys = new Tietokanta("localhost", "vaolabsfi_saku", "S4ku2014Vaa5a!");
+
 ?>

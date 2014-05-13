@@ -40,7 +40,7 @@ class LajiHallinta {
 	 */
 	public function __construct(Tietokanta $yhteys) {
 		$this->kanta = $yhteys;
-		$this->taytalajit ();
+		$this->taytalajit();
 	}
 	
 	/**
@@ -67,7 +67,7 @@ class LajiHallinta {
 	}
     
     /**
-     * Palauttaa Lajin Id mukaan.
+     * Palauttaa Laji Idn mukaan.
      */
     public function getById($id) {
         return $this->mLajit[$id - 1];
