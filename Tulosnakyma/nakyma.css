@@ -24,11 +24,8 @@ body {
    } */
 
 body {
-<<<<<<< HEAD
-
-=======
-font-family: 'Cedarville Cursive', cursive;
->>>>>>> ff9dab8c6d5f7ee92170474209188e2a01175379
+  margin: auto;
+  font-family: 'Denk One', sans-serif;
 }
 
 /*
@@ -38,30 +35,30 @@ div#sisalto {
   padding: 0px;
 } */
 
-h2 {
-  font-size: 35px;
+h1 {
+  font-size: 45px;
+  width: 600px;
 }
 
 h3 {
   font-size: 25px;
 }
 
-div#kunnia {
+div#kunniat {
   float: right;
-  padding-top: 70px;
+  padding-top: 40px;
   padding-left: 30px;
-  padding-right: 150px;
+  /*padding-right: 100px; */
 }
 
 div#tulos {
   float: right;
-  width: 300px;
-  padding-right: 150px;
+  /*width: 300px;*/
+  padding-right: 100px;
 }
 
-div#lajit {
+div#logo {
   float: left;
-  width: 260px;
 }
 
 #kunnia_srk1 {
@@ -77,29 +74,29 @@ div#lajit {
  *
  */
 #sija1 {
-  font-size: 35px;
+  font-size: 40px;
 }
 
 /**
  *
  */
 #sija2 {
-  font-size: 30px;
+  font-size: 35px;
 }  
 
 /**
  *
  */
 #sija3 {
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .sijat {
-  height: 25px;
+  height: 35px;
 }
 
 .jaettu {
-  font-size:30px;
+  font-size: 35px;
 }
 
 /**
@@ -108,14 +105,18 @@ div#lajit {
  */
 .kunnia {
   font-size: 25px;
+  width: 200px;
+  padding-bottom: 5px;
 }
 
 .oppilaitos {
-  width: 300px;
-  height: 20px;
-  font-size: 30px;
+  /*width: 300px; 
+  height: 20px;*/
+ 
+  font-size: 30px; 
   margin-left: 50px;
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
+  padding-bottom: 25px;
   /*
   list-style: disc outside none;
   display: list-item; */
