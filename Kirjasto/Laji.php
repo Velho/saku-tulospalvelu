@@ -38,8 +38,8 @@ class LajiHallinta {
 	 * mm. Suorittaa vaadittavat alustus kyselyt.
 	 * @param Tietokanta $yhteys
 	 */
-	public function __construct(Tietokanta $yhteys) {
-		$this->kanta = $yhteys;
+	public function __construct() {
+		$this->kanta = Tietokanta::getTietokanta();
 		$this->taytalajit();
 	}
 	

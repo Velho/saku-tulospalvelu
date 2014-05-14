@@ -23,10 +23,10 @@ function required() {
     }
     return true;
 }
-$yhteys = new Tietokanta(/** DATABASE INFORMATION **/);
-$tuloshallinta = new TulosHallinta($yhteys, false); 
-$lajit = new LajiHallinta($yhteys);
-$oppilaitokset = new OppilaitosHallinta($yhteys);
+
+$tuloshallinta = new TulosHallinta(false); 
+$lajit = new LajiHallinta();
+$oppilaitokset = new OppilaitosHallinta();
 
 $l_id = $lajit->getIdByName($_GET["lajit_valinta"]);
 $laji = $lajit->getById($l_id);

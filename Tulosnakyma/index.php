@@ -13,9 +13,8 @@
         require 'Kirjasto/Laji.php';
         require 'Kirjasto/Tulos.php';
         
-        $kanta = new Tietokanta(/** DATABASE INFORMATION **/);
-        $tulos = new TulosHallinta($kanta, false);
-        $lajit = new LajiHallinta($kanta);
+        $tulos = new TulosHallinta(false);
+        $lajit = new LajiHallinta();
         
         $laji_id = $tulos->availableTulokset();
         

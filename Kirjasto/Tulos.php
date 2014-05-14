@@ -2,91 +2,10 @@
 
 /**
  * Joel Anttila 2014
- * 
- * TODO: Poista tarpeeton koodi(myös kommentoidut).
- * TODO: Lisää virhehallintaa. (funktio setOppilaitos()).
+ * Saku-Tulospalvelu
  *
- * TÄRKEIN:
- * TODO: Korjaa SQL lauseke.
+ * TODO: Lisää virhehallintaa. (funktio setOppilaitos()).
  */
-
-/**
- * Tulos objektia ei saa vastaamaan kannassa olevaa taulua. 
- * Taulu ei ole järkevästi suunniteltu vastaamaan oliomallia.
- * Vaikka mahdollisesti olisi jonkinmoinen voinut,
- * mutta aivan turhaan. => Yksi tieto vastaa yhtä lajia, jne.
- 
-class Tulos {
-	const KULTA = 1;
-	const HOPEA = 2;
-	const PRONSSI = 3;
-	const KUNNIA = 4;
-	
-	// private $mId;
-	private $mSijoitus;
-	private $mNimi;
-	private $mPisteet;
-    private $mLaji;
-	private $mOppilaitos;
-    private $mJaettu;
-    
-	public function __construct($sijoitus, $nimi) {
-	  $this->mSijoitus = $sijoitus;
-	  $this->mNimi = $nimi;
-	  $this->mPisteet = 0;
-      $this->mLaji = 0;
-	  $this->mOppilaitos = 0;
-      $this->mJaettu = false;
-	}
-    
-
-	public function __construct($sijoitus, $nimi, $laji ,$pisteet, $oppilaitos, $jaettu) {
-		$this->mSijoitus = $sijoitus;
-		$this->mNimi = $nimi;
-		$this->mPisteet = $pisteet;
-        $this->mLaji = $laji;
-		$this->mOppilaitos = $oppilaitos;
-        $this->mJaettu = $jaettu;
-	}
-	
-	public function getSijoitus() {
-		return $this->mSijoitus;
-	}
-	public function getNimi() {
-		return $this->mNimi;
-	}
-	public function getPisteet() {
-		return $this->mPisteet;
-	}
-    public function getLaji() {
-        return $this->mLaji;
-    }
-	public function getOppilaitos() {
-		return $this->mOppilaitos;
-	}
-    public function isJaettu() {
-        return $this->mJaettu;
-    }
-    
-    public function setSijoitus($sija) {
-        $this->mSijoitus = $sija;
-    }
-    public function setNimi($nimi) {
-        $this->mNimi = $nimi;
-    }
-    public function setPisteet($pisteet) {
-        $this->mPisteet = $pisteet;
-    }
-    public function setLaji($laji) {
-        $this->mLaji = $laji;
-    }
-    public function setOppilaitos($op) {
-        $this->mOppilaitos = $op;
-    }
-    public function setJaettu($jaettu) {
-        $this->mJaettu = $jaettu;
-    }
-} */
 
 /*
  * Tulos tiedot lähetetty tänne. ($POST)
@@ -117,12 +36,12 @@ class TulosHallinta {
   private $mKanta;
   private $mOppilaitokset;
   
-  public function __construct(Tietokanta $kanta, $nakyma) {
-    $this->mKanta = $kanta;
+  public function __construct($nakyma) {
+    $this->mKanta = Tietokanta::getTietokanta();
     
     // Jätetään alustamatta jos ei ole kyseessä Näkymä.
     if($nakyma)
-      $this->mOppilaitokset = new OppilaitosHallinta($kanta);
+      $this->mOppilaitokset = new OppilaitosHallinta();
   }
   
   public function setOppilaitokset($op) { $this->mOppilaitokset = $op; }

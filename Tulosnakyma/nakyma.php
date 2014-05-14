@@ -42,10 +42,9 @@ class TulosHaku {
   }
   
   private function alusta() {
-    $kanta = new Tietokanta(/** DATABASE INFORMATION **/);
-    $this->laji = new LajiHallinta($kanta);
-    $this->oppilaitokset = new OppilaitosHallinta($kanta);
-    $this->tulokset = new TulosHallinta($kanta, true);
+    $this->laji = new LajiHallinta();
+    $this->oppilaitokset = new OppilaitosHallinta();
+    $this->tulokset = new TulosHallinta(true);
     $this->sarakkeet = $this->tulokset->getSarakkeet();
   }
   

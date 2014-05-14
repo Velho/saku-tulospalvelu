@@ -38,8 +38,8 @@ class OppilaitosHallinta {
 	 * Alustaa OppilaitosHallinta palikan.
 	 * @param Tietokanta $yhteys
 	 */
-	public function __construct(Tietokanta $yhteys) {
-		$this->kanta = $yhteys;
+	public function __construct() {
+		$this->kanta = Tietokanta::getTietokanta();
 		$this->taytaOppilaitokset ();
 	}
 	

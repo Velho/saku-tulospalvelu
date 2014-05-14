@@ -13,22 +13,11 @@ require("Kirjasto/Tulos.php");
 
 require("Tuloslomake/autentikointi.php");
 
-function foo() {
-    $yhteys = new Tietokanta (/** DATABASE INFORMATION **/);
-    $lajit = new LajiHallinta($yhteys);
-    $tulokset = new TulosHallinta($yhteys, true);
-    $laji = $lajit->getById(2);
-    //var_dump($tulokset->palautaSarakkeet());
-    var_dump($tulokset->checkTulosByLaji($laji));
-}
-
-
 /**
  * Tulostetaan <option> elementtiin laji valinnat.
  */
 function LajiValinnat() {
-    $yhteys = new Tietokanta(/** DATABASE INFORMATION **/);
-    $lajit = new LajiHallinta ( $yhteys );
+    $lajit = new LajiHallinta();
     
     foreach ( $lajit->getNimet () as $nimi ) {
         echo '<option>';
@@ -41,8 +30,7 @@ function LajiValinnat() {
  * @return Palauttaa taulukon oppilaitosten nimist�.
  */
 function getOppilaitosNimet() {
-    $yhteys = new Tietokanta(/** DATABASE INFORMATION **/);
-    $laitokset = new OppilaitosHallinta ( $yhteys );
+    $laitokset = new OppilaitosHallinta();
     
     return $laitokset->getNimet ();
 }
